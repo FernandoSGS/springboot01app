@@ -18,12 +18,12 @@ import br.gov.sp.fatec.springboot01app.service.IUsuarioService;
 @RequestMapping(value = "/usuario")
 @CrossOrigin
 public class UsuarioController {
-    
+
     @Autowired
     private IUsuarioService service;
-
+    
     @GetMapping
-    public List<Usuario> buscarTodos() {
+    public List<Usuario> todosUsuarios() {
         return service.buscarTodosUsuarios();
     }
 
@@ -31,9 +31,10 @@ public class UsuarioController {
     public Usuario novoUsuario(@RequestBody Usuario usuario) {
         return service.novoUsuario(usuario);
     }
-    
+
     @GetMapping(value = "/{id}")
     public Usuario buscarPorId(@PathVariable("id") Long id) {
-        return service.buscarPorId(id);
+        return service.buscarUsuarioPorId(id);
     }
+    
 }
