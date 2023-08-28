@@ -1,5 +1,8 @@
 package br.gov.sp.fatec.springboot01app.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +24,17 @@ public class UsuarioService {
                     throw new IllegalArgumentException("Dados Inválidos!");
                 }
                 return usuarioRepo.save(usuario);
+    }
+
+    public List<Usuario> buscarTodosUsuarios(){
+        return usuarioRepo.findAll();
+    }
+
+    public Usuario buscarPorId(Long id) {
+        Optional<Usuario> usuarioOp = usuarioRepo.findById(id);
+        if(usuarioOp.isEmpty()) {
+            throw new IllegalArgumentException("Usuario nao encontrado!");
+        }
+        return usuarioOp.get();
     }
 }
